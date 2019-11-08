@@ -1,0 +1,7 @@
+
+.intro {
+  background-image: url("/images/Pizza6.jpg");
+ /* background-repeat: no-repeat;*/
+  background-size:cover ;
+  height: 90vh;
+}
