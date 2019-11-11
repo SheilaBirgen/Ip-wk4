@@ -193,6 +193,7 @@ $("document").ready(function() {
       var finalPrice = calcTotal() * totalQuantity + 150;
       $("#place").text(place);
       $("phonenumber").number(phonenumber);
+      
       $("#finalprice").text(finalPrice);
       $("#success").show();
     } else {
