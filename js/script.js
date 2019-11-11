@@ -185,12 +185,14 @@ $("document").ready(function() {
   //event to trigger location form
   $("#myModel").click(function() {
     var deliver = confirm(
-      "Would you like us deliver your pizza to your doorstep? transport cost ksh 150."
+      "Would you like us deliver your favourite pizza to your doorstep? transport cost ksh 150."
     );
     if (deliver) {
       var place = prompt("Enter your location");
+      var phonenumber = prompt("enter your number");
       var finalPrice = calcTotal() * totalQuantity + 150;
       $("#place").text(place);
+      $("phonenumber").number(phonenumber);
       $("#finalprice").text(finalPrice);
       $("#success").show();
     } else {
