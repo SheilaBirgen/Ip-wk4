@@ -34,6 +34,9 @@
   font-size: 15px;
   text-align: center;
 }
+.img-fluid{
+ height: 200px;
+}
 .footer {
   background-color: rgb(181, 191, 202);
   width: 100%;
