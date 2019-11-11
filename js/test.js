@@ -1,0 +1,9 @@
+$(document).ready(
+    function(){
+        $("#gettotal").click(
+            function(){
+                alert("hello");
+            }
+        )
+    }
+)
