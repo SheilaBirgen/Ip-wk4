@@ -51,6 +51,16 @@ function sizeCalcPrice(size) {
     return sizePrice.large * 1;
   }
 }
+//price according to crust
+function crustCalcPrice(crust) {
+  if (crust === "crispy") {
+    return crustPrice.crispy * 1;
+  } else if (crust === "stuffed") {
+    return crustPrice.stuffed * 1;
+  } else {
+    return crustPrice.gluten * 1;
+  }
+}
 /*$(document).ready(function(){
     $("button.proceed").click(function(event){
         let pname = $(".name option:selected").val();
