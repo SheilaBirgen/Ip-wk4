@@ -32,12 +32,8 @@
 .aboutus{
   justify-content:center;
   font-size: 15px;
+  text-align: center;
 }
-.img-fluid{
-  height: 40vh;
-
-}
-
 .footer {
   background-color: rgb(181, 191, 202);
   width: 100%;
