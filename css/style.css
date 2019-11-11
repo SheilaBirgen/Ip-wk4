@@ -34,8 +34,8 @@
   font-size: 15px;
   text-align: center;
 }
-#menuu {
-   text-align: center;}
+#mennu{
+  justify-content: center;}
 .img-fluid{
  height: 200px;
 }
