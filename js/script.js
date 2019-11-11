@@ -1,7 +1,8 @@
 //***********Busines Logic**********//
 
 //pizza constructor
-function Pizza(size, crust) {
+function Pizza(type, size, crust) {
+  this.type = type;
   this.size = size;
   this.crust = crust;
   this.toppings = [];
@@ -14,8 +15,8 @@ function Location(name, estate) {
 
 //price size
 var sizePrice = {
-  small: 600,
-  medium: 800,
+  small: 750,
+  medium: 900,
   large: 1200
 };
 var toppingPrice = [
@@ -70,7 +71,7 @@ function toppingsCalcPrice(toppings) {
     if (toppings[i] == "pepperoni") {
       noOfTopping += 100;
     }
-    if (toppings[i] == "veges") {
+    if (toppings[i] == "mushrooms") {
       noOfTopping += 50;
     }
     if (toppings[i] == "bacon") {
@@ -85,8 +86,14 @@ function checkPepperoni(topping) {
   return topping === "pepperoni";
 }
 
-  // *********UI Logic***********//
+// *********UI Logic***********//
 $("document").ready(function() {
+  //fetch the Type of pizza
+  function getPizzaType() {
+    return $("#pizza-type")
+      .find(":selected")
+      .val();
+  }
   //fetch size of pizza
   function getPizzaSize() {
     return $("#pizza-size")
@@ -111,11 +118,12 @@ $("document").ready(function() {
   //submit event
   $("form#myform").submit(function(event) {
     event.preventDefault();
+    var pizzaType=getPizzaType();
     var pizzaSize = getPizzaSize();
     var crust = getCrust();
     var toppingList = getToppings();
 
-    var newPizza = new Pizza(pizzaSize, crust);
+    var newPizza = new Pizza(pizzaType,pizzaSize, crust);
     newPizza.toppings.push(toppingList);
     $("#cart").hide();
     $("#table").show();
@@ -124,10 +132,15 @@ $("document").ready(function() {
       sizeCalcPrice(pizzaSize) +
       crustCalcPrice(crust) +
       toppingsCalcPrice(toppingList);
-      //append item to the cart when submit event is triggered
+
+    //append item to the cart when submit event is triggered
     $("#items").append(
       "<tr>" +
         "<td>" +
+        newPizza.type +
+        "</td>" +
+        "<td>" +
+        "<p>" +
         newPizza.size +
         "</td>" +
         "<td>" +
@@ -159,34 +172,36 @@ $("document").ready(function() {
     $("#quantity").text(totalQuantity);
     pizzaList.push(calcTotal());
   });
-//display total prize of your order
-$("#gettotal").click(function() {
-  var total = 0;
-  pizzaList.forEach(function(pizza) {
-    total += pizza;
-  });
-  $("#money").text(total);
-});
 
-//event to trigger location form
-$("#myModel").click(function() {
-  var deliver = confirm(
-    "Would you like us deliver your pizza to your doorstep? transport cost ksh 150."
-  );
-  if (deliver) {
-    var place = prompt("Enter your location");
-    var finalPrice = calcTotal() * totalQuantity + 150;
-    $("#place").text(place);
-    $("#finalprice").text(finalPrice);
-    $("#success").show();
-  } else {
-    $("#no-location").text(calcTotal() * totalQuantity);
-    $("#no-delivery").show();
-  }
-  //clear form
-  $("#pizza-size").val("");
-  $("#pizza-crust").val("");
-  $("#items").remove();
-  $("#quantity").text(0);
-});
+  //display total prize of your order
+  $("#gettotal").click(function() {
+    var total = 0;
+    pizzaList.forEach(function(pizza) {
+      total += pizza;
+    });
+    $("#money").text(total);
+  });
+
+  //event to trigger location form
+  $("#myModel").click(function() {
+    var deliver = confirm(
+      "Would you like us deliver your pizza to your doorstep? transport cost ksh 150."
+    );
+    if (deliver) {
+      var place = prompt("Enter your location");
+      var finalPrice = calcTotal() * totalQuantity + 150;
+      $("#place").text(place);
+      $("#finalprice").text(finalPrice);
+      $("#success").show();
+    } else {
+      $("#no-location").text(calcTotal() * totalQuantity);
+      $("#no-delivery").show();
+    }
+    //clear form
+    $("#pizza-type").val("");
+    $("#pizza-size").val("");
+    $("#pizza-crust").val("");
+    $("#items").remove();
+    $("#quantity").text(0);
+  });
 });
