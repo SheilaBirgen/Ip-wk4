@@ -7,7 +7,7 @@ Sheila Birgen J.
 ## Screenshot
 
 <img src="images/screenshot1.png">
-<img src="images/screenshot2.png">
+<img src="images/screenshot 2.png">
 <img src="images/screenshot3.png">
 
 ## Description
@@ -15,7 +15,8 @@ Sheila Birgen J.
 This is a website at enables one to make an order on their favourite flavour of pizza.It allows one to also select their yummiest crust and toppings.It also favours one such that the can request for delivery by giving us their location.
 
 ## Deploying link
-https://sheilabirgen.github.io/ip-wk4/
+https://sheilabirgen.github.io/Ip-wk4/
+
 ## BDD
 | Behavior | Input    | Output   |
 | :------------- | :------------- | :------------- |
