@@ -26,7 +26,7 @@ var toppingPrice = [
       medium: 100,
       large: 150
     },
-    veges: {
+    mushrooms: {
       small: 25,
       medium: 50,
       large: 75
@@ -118,12 +118,12 @@ $("document").ready(function() {
   //submit event
   $("form#myform").submit(function(event) {
     event.preventDefault();
-    var pizzaType=getPizzaType();
+    var pizzaType = getPizzaType();
     var pizzaSize = getPizzaSize();
     var crust = getCrust();
     var toppingList = getToppings();
 
-    var newPizza = new Pizza(pizzaType,pizzaSize, crust);
+    var newPizza = new Pizza(pizzaType, pizzaSize, crust);
     newPizza.toppings.push(toppingList);
     $("#cart").hide();
     $("#table").show();
@@ -174,16 +174,14 @@ $("document").ready(function() {
   });
 
   //display total prize of your order
-  $("#gettotal").click(function() {
+  $("#gettotal").click(function(event) {
+    event.preventDefault();
     var total = 0;
     pizzaList.forEach(function(pizza) {
       total += pizza;
     });
-    $("#money").text(total);
-  });
 
-  //event to trigger location form
-  $("#myModel").click(function() {
+    alert('Total amount for your order is:'+total);
     var deliver = confirm(
       "Would you like us deliver your favourite pizza to your doorstep? transport cost ksh 150."
     );
@@ -191,16 +189,26 @@ $("document").ready(function() {
       var place = prompt("Enter your location");
       var phonenumber = prompt("enter your number");
       var finalPrice = calcTotal() * totalQuantity + 150;
+      alert('Thankyou. Your order will be delivered at '+place+ 'Total amout is '+finalPrice);
       $("#place").text(place);
       $("phonenumber").number(phonenumber);
-      
+
       $("#finalprice").text(finalPrice);
+      
       $("#success").show();
     } else {
       $("#no-location").text(calcTotal() * totalQuantity);
       $("#no-delivery").show();
     }
-    //clear form
+    // $("#money").text(total);
+    
+  });
+
+  //event to trigger location form
+  $("#myModel").click(function() {
+    var deliver = confirm(
+      "Would you like us deliver your favourite pizza to your doorstep? transport cost ksh 150."
+    );
     $("#pizza-type").val("");
     $("#pizza-size").val("");
     $("#pizza-crust").val("");
